@@ -1,19 +1,19 @@
 package com.application.Sacco.service.users;
 
 import java.util.List;
-import java.util.Optional;
-
-import com.application.Sacco.entity.users.UsersEntity;
+import com.application.Sacco.entity.users.Users;
 
 public interface UsersService {
 
-	UsersEntity addUser(UsersEntity usersEntity);
+	Users addUser(Users Users);
 	
-	UsersEntity updateUser(UsersEntity usersEntity);
+	Users updateUser(Users Users);
 	
-	List<UsersEntity> getAllUsers();
+	List<Users> getAllUsers();
 	
-	Optional<UsersEntity> getUser(Long userId);
+	Users getUser(Long userId);
+	
+	Users findByEmailAddress(String email);
 	
 	void deleteUser(Long userId);
 }

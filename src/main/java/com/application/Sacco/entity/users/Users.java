@@ -4,11 +4,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.application.Sacco.entity.company.Company;
 
 @Entity
 @Table(name="users")
-public class UsersEntity {
+public class Users {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -19,17 +23,24 @@ public class UsersEntity {
 	private String email;
 	private String password;
 	
-	public UsersEntity() {}
+	@ManyToOne
+	@JoinColumn(name = "company_id")
+	private Company company;
 	
-	public UsersEntity(int id, String username, String firstName, String lastName, String email, String password) {
-		// TODO Auto-generated constructor stub
-		this.id = (long) id;
+	public Users() {}
+	
+
+	public Users(String username, String firstName, String lastName, String email, String password, Company company) {
+		super();
 		this.username = username;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
+		this.company = company;
 	}
+
+
 
 	public Long getId() {
 		return id;
@@ -78,5 +89,16 @@ public class UsersEntity {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+
+	public Company getCompany() {
+		return company;
+	}
+
+
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+	
 	
 }

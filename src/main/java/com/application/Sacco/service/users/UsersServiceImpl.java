@@ -1,12 +1,10 @@
 package com.application.Sacco.service.users;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.application.Sacco.entity.users.UsersEntity;
+import com.application.Sacco.entity.users.Users;
 import com.application.Sacco.repository.users.UsersRepository;
 
 @Service
@@ -16,33 +14,39 @@ public class UsersServiceImpl implements UsersService {
 	private UsersRepository usersRepository;
 
 	@Override
-	public UsersEntity addUser(UsersEntity usersEntity) {
+	public Users addUser(Users Users) {
 		// TODO Auto-generated method stub
-		return usersRepository.save(usersEntity);
+		return usersRepository.save(Users);
 	}
 
 	@Override
-	public UsersEntity updateUser(UsersEntity usersEntity) {
+	public Users updateUser(Users Users) {
 		// TODO Auto-generated method stub
-		return usersRepository.saveAndFlush(usersEntity);
+		return usersRepository.saveAndFlush(Users);
 	}
 
 	@Override
-	public List<UsersEntity> getAllUsers() {
+	public List<Users> getAllUsers() {
 		// TODO Auto-generated method stub
 		return usersRepository.findAll();
 	}
 
 	@Override
-	public Optional<UsersEntity> getUser(Long userId) {
+	public Users getUser(Long userId) {
 		// TODO Auto-generated method stub
-		return usersRepository.findById(userId);
+		return usersRepository.findById(userId).orElse(null);
 	}
 
 	@Override
 	public void deleteUser(Long userId) {
 		// TODO Auto-generated method stub
 		usersRepository.deleteById(userId);
+	}
+
+	@Override
+	public Users findByEmailAddress(String email) {
+		// TODO Auto-generated method stub
+		return usersRepository.findByEmail(email);
 	}
 
 }
